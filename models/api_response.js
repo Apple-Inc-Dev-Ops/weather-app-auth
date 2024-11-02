@@ -2,6 +2,6 @@ export default function APIResponse(data = null, status = "SUCCESS", error = nul
     return {
         status,
         data,
-        error
+        error,
     }
 }

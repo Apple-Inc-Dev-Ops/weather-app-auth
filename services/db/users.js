@@ -16,3 +16,17 @@ export async function createUsers(username, password) {
     throw error;
   }
 }
+
+export async function getUser(username) {
+  try {
+    const prisma = new PrismaClient();
+
+    return await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
+}
