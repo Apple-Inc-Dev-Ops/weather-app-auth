@@ -2,6 +2,7 @@ import express from "express";
 import * as dotenv from 'dotenv';
 import authRouter from "./routes/auth_router.js";
 import cors from "cors";
+import favoriteRouter from "./routes/favorite_router.js";
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(authRouter);
+app.use(favoriteRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
