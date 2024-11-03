@@ -1,3 +1,4 @@
+// const { PrismaClient } = require('@prisma/client');
 import { PrismaClient } from "@prisma/client";
 import { hashSync } from "bcrypt";
 
@@ -24,6 +25,20 @@ export async function getUserByUsername(username) {
         where: {
           username,
         }
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getUser(username) {
+  try {
+    const prisma = new PrismaClient();
+
+    return await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
     });
   } catch (error) {
     throw error;
