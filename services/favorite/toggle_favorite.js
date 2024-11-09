@@ -1,7 +1,7 @@
 import { createFavorite, deleteFavorite, getFavoriteByLatLong } from '../db/favorites.js'
 import { getUserByUsername } from '../db/users.js'
 
-export default async function toggleFavorite(username, lat, long) { 
+export default async function toggleFavorite (username, lat, long) {
   const user = await getUserByUsername(username)
   const checkIfExist = await getFavoriteByLatLong(user.id, lat, long)
 

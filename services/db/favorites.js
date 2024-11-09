@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-export async function createFavorite(userId, lat, long) { 
+export async function createFavorite (userId, lat, long) {
   const prisma = new PrismaClient()
 
   return await prisma.favorites.create({
@@ -12,7 +12,7 @@ export async function createFavorite(userId, lat, long) {
   })
 }
 
-export async function deleteFavorite(userId, lat, long) { 
+export async function deleteFavorite (userId, lat, long) {
   const prisma = new PrismaClient()
 
   return await prisma.favorites.deleteMany({
@@ -24,7 +24,7 @@ export async function deleteFavorite(userId, lat, long) {
   })
 }
 
-export async function getFavoritesByUserId(userId) { 
+export async function getFavoritesByUserId (userId) {
   const prisma = new PrismaClient()
 
   return await prisma.favorites.findMany({
@@ -34,7 +34,7 @@ export async function getFavoritesByUserId(userId) {
   })
 }
 
-export async function getFavoriteByLatLong(userId, lat, long) { 
+export async function getFavoriteByLatLong (userId, lat, long) {
   const prisma = new PrismaClient()
 
   return await prisma.favorites.findMany({
