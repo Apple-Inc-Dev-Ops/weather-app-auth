@@ -1,5 +1,7 @@
 import { getUser } from '../db/users.js'
-import { compare } from 'bcrypt'
+import bcryptjs from 'bcryptjs';
+
+const { compare } = bcryptjs;
 
 export default async function login (username, password) {
   const user = await getUser(username)
