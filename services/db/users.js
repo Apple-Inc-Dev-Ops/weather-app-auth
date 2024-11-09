@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { hashSync } from 'bcrypt'
 
-export async function createUsers(username, password) {
+export async function createUsers(username, password) { 
   const prisma = new PrismaClient()
 
   return await prisma.users.create({
@@ -12,7 +12,7 @@ export async function createUsers(username, password) {
   })
 }
 
-export async function getUserByUsername(username) {
+export async function getUserByUsername(username) { 
   const prisma = new PrismaClient()
 
   return await prisma.users.findFirstOrThrow({
@@ -22,7 +22,7 @@ export async function getUserByUsername(username) {
   })
 }
 
-export async function getUser(username) {
+export async function getUser(username) { 
   const prisma = new PrismaClient()
 
   return await prisma.users.findUnique({
