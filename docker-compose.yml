@@ -1,25 +1,35 @@
 ---
 services:
   node:
-    build:
-      dockerfile: Dockerfile
-      context: .docker/node
+    restart: unless-stopped
+    container_name: weather_auth
+    build: .
     ports:
-      - 3030:3000
-    volumes:
-      - ./:/var/www/html
+      - 3000:3030
+    networks:
+      - weather_app
+    depends_on:
+      - postgres
+
   postgres:
-    build:
-      dockerfile: Dockerfile
-      context: .docker/postgres
+    restart: unless-stopped
+    container_name: weather_auth_database
+    image: postgres:13.3-alpine
     ports:
-      - 54330:5432
+      - 5433:5432
     volumes:
-      - postgres:/var/lib/postgres/data
+      - weather_auth_volume:/var/lib/postgres/data
     environment:
       POSTGRES_USER: apple
       POSTGRES_PASSWORD: apple
       POSTGRES_DB: apple
+    networks:
+      - weather_app
 
 volumes:
-  postgres:
+  weather_auth_volume:
+    name: weather_auth_volume
+
+networks:
+  weather_app:
+    name: weather_app
