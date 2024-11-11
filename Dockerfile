@@ -1,11 +1,13 @@
-FROM node:22-bookworm
+FROM node:18-alpine as build-stage
 
-WORKDIR /var/www/html
+WORKDIR /app
 
-COPY ./ /var/www/html
+COPY package*.json ./
 
 RUN npm install
 
-CMD ["npm", "run", "dev"]
+COPY . .
 
-EXPOSE 3000
+EXPOSE 3030
+
+CMD ["sh", "./post_script.sh"]
