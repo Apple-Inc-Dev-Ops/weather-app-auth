@@ -3,7 +3,7 @@ services:
   node:
     restart: unless-stopped
     container_name: weather_auth
-    image: pietervardi/weather-app-auth:v1.0
+    build: .
     ports:
       - 3000:3030
     networks:
