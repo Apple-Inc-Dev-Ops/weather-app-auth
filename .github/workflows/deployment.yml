@@ -1,0 +1,23 @@
+---
+name: Build and Publish Image to Docker Hub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build image
+        run: docker build . -t pietervardi/weather-app-auth:latest
+      - name: login to docker hub
+        uses: docker/login-action@v3
+        with:
+          username: pietervardi
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: push image
+        run: docker push pietervardi/weather-app-auth:latest
