@@ -5,7 +5,7 @@ metadata:
   namespace: weather-app
 spec:
   selector:
-    app: weather-app-database
+    app: weather-auth-database
   ports:
     - protocol: TCP
       port: 5432
