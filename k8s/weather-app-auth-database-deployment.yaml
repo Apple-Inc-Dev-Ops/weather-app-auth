@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-auth-database
+  namespace: weather-app
+  labels:
+    app: weather-auth-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-auth-database
+  template:
+    metadata:
+      labels:
+        app: weather-auth-database
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:13.3-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "apple"
+            - name: POSTGRES_PASSWORD
+              value: "apple"
+            - name: POSTGRES_DB
+              value: "apple"
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: weather-auth-database-pvc
