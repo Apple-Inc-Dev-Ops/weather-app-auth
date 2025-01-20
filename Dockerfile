@@ -5,7 +5,7 @@ FROM node:18-alpine as build-stage
 WORKDIR /app
 
 # Install system dependencies required by Prisma
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl=3.3.2-r4
 
 # Copy necessary files
 COPY package*.json ./
